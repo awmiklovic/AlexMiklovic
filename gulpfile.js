@@ -7,7 +7,7 @@ const image = require('gulp-image');
  
 
 gulp.task('clean', function(){
-  return gulp.src('dist/*')
+  return gulp.src('docs/*')
   .pipe(clean());
 });
 
@@ -15,29 +15,29 @@ gulp.task('scripts', ['clean'], () => {
 
   gulp.src('src/css/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('dist/css'));
+    .pipe(gulp.dest('docs/css'));
 
   gulp.src('src/js/*.js')
     .pipe(babel({
           presets: ['env']
     }))
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('docs/js'));
 
   gulp.src('src/js/lib/*.js')
-    .pipe(gulp.dest('dist/js'));
+    .pipe(gulp.dest('docs/js'));
 
   gulp.src('src/templates/*.pug')
     .pipe(pug())
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('docs'));
 
   gulp.src('src/images/**/*.{svg,png,jpg,gif,mp4}')
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('docs/images'));
 
   gulp.src('src/fonts/*.otf')
-    .pipe(gulp.dest('dist/fonts'));
+    .pipe(gulp.dest('docs/fonts'));
 
   return gulp.src('src/images/*.{svg,png,jpg,gif,mp4}')
-    .pipe(gulp.dest('dist/images'));
+    .pipe(gulp.dest('docs/images'));
 
 });
 
