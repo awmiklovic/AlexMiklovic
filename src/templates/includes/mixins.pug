@@ -1,0 +1,62 @@
+//- Mixins.pug
+
+mixin test(attr)
+	h1= attr
+
+mixin mobileWireframe(project, name, vid)
+	div(class="mobile-wireframe")
+		if vid
+			div(class="play-btn")
+				img(src="/images/play.png")
+		img(src="/images/mobile-frame-filled.svg")
+		div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.png')")
+			if vid
+				+overlay
+				video(loop muted class="vid" preload="metadata")
+					source(data-src="images/"+project+"/"+name+".mp4")
+
+mixin desktopWireframe(project, name, vid)
+		div(class="desktop-wireframe")
+			if vid
+				div(class="play-btn")
+					img(src="/images/play.png")
+			img(src="/images/desktop-frame-filled.svg")
+			div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.png')")
+				if vid
+					+overlay
+					video(loop muted class="vid" preload="metadata")
+						source(data-src="images/"+project+"/"+name+".mp4")
+
+mixin cropped(project, name)
+	div(class="cropped-img shadow" style="background-image:url('/images/"+project+"/"+name+".png')")
+
+mixin fullImg(project, name)
+	img(class="shadow" src="/images/"+project+"/"+name+".png")
+
+mixin overlay
+	div(class="vid-overlay")
+		//-div(class="overlay-name")
+			//- A
+			img(class="name-letter" src="/images/a.svg")
+			//- L
+			img(class="name-letter" src="/images/l.svg")
+			//- E
+			img(class="name-letter" src="/images/e.svg")
+			//- X
+			img(class="name-letter" src="/images/x.svg")
+			//- M
+			img(class="name-letter" src="/images/m.svg")
+			//- I
+			img(class="name-letter" src="/images/i.svg")
+			//- K
+			img(class="name-letter" src="/images/k.svg")
+			//- L
+			img(class="name-letter" src="/images/l.svg")
+			//- O
+			img(class="name-letter" src="/images/o.svg")
+			//- V
+			img(class="name-letter" src="/images/v.svg")
+			//- I
+			img(class="name-letter" src="/images/i.svg")
+			//- C
+			img(class="name-letter" src="/images/c.svg")

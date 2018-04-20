@@ -1,0 +1,45 @@
+//- laf.pug
+
+extends layout.pug
+
+block content
+	img(id="header-img" src="/images/laf/laf-header.png")
+	div(class="container")
+		h1 Laguna Art Museum
+		div(class="two-thirds")
+			p.
+				Fix Manufacturing creates wearable multi-tools for outdoor sports such as skateboarding, mountain biking, snowboarding and surfing. By building a multi-tool that fits directly into a belt buckle, Fix Manufacturing helps sports enthusiasts make sure that their tools are within reach, wherever and whenever they need them.
+			p.
+				This project was one of many in which I had the opportunity to collaborate with the premier graphic and web design studio in Laguna Beach, California - Studio Misfits. As always, they did an excellent job designing this website, and Im glad to have been able to work with them by covering the development for this project.
+
+		div(class="one-third")
+			+mobileWireframe('laf', 'laf-mobile', true)
+
+	div(class="container")
+			+desktopWireframe('laf', 'laf-home', true)
+
+	div(class="container")
+		+fullImg("laf", "centennial")
+
+	div(class="container")
+		div(class="one-third")
+			+mobileWireframe("laf", "laf-about-mobile", true)
+
+		div(class="two-thirds")
+			+cropped("laf", "laf-sign")
+
+	div(class="container")
+		+fullImg('laf', 'search')
+
+	div(class="container")
+		div(class="two-thirds")
+			+cropped("laf", "gallery")
+
+		div(class="one-third")
+			+mobileWireframe("laf", "laf-menu")
+
+	div(class="container")
+		+desktopWireframe('laf', 'events')
+
+	div(class="container")
+		+fullImg('laf', 'celebrate')

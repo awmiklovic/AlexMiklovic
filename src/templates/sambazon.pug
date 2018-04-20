@@ -1,0 +1,38 @@
+//- sambazon.pug
+
+extends layout.pug
+
+block content
+	img(id="header-img" src="/images/sambazon/sambazon-header.png")
+	div(class="container")
+		h1 Sambazon
+		div(class="two-thirds")
+			p.
+				Fix Manufacturing creates wearable multi-tools for outdoor sports such as skateboarding, mountain biking, snowboarding and surfing. By building a multi-tool that fits directly into a belt buckle, Fix Manufacturing helps sports enthusiasts make sure that their tools are within reach, wherever and whenever they need them.
+			p.
+				This project was one of many in which I had the opportunity to collaborate with the premier graphic and web design studio in Laguna Beach, California - Studio Misfits. As always, they did an excellent job designing this website, and Im glad to have been able to work with them by covering the development for this project.
+
+		div(class="one-third")
+			+mobileWireframe('sambazon', 'sambazon-demo-mobile', true)
+
+	div(class="container")
+			+desktopWireframe('sambazon', 'sambazon-demo', true)
+
+	div(class="container")
+		+fullImg("sambazon", "sambazon")
+
+	div(class="container")
+		div(class="one-third")
+			+mobileWireframe("sambazon", "join-us")
+
+		div(class="two-thirds")
+			+cropped("sambazon", "bowl")
+
+	div(class="container")
+		+fullImg('sambazon', 'join-us-desktop')
+
+	div(class="container")
+		+desktopWireframe('sambazon', 'retail')
+
+	div(class="container")
+		+fullImg('sambazon', 'map')

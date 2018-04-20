@@ -1,0 +1,90 @@
+//- layout.pug
+include ./includes/mixins.pug
+
+html
+	head
+		title Alex Miklovic
+		script(src='http://code.jquery.com/jquery-3.3.1.min.js')
+		script(src='https://unpkg.com/flipping@latest/dist/flipping.gsap.js')
+		script(src='js/barba.js')
+		script(src='js/main.js')
+		link(rel='icon', href='/images/favicon.png')
+		link(rel='stylesheet', href='/css/main.css')
+	body
+		block scripts
+		include includes/nav.pug
+		#name
+			#bio(data-flip-key="bio")
+				p(class="vaporize") Alex Miklovic makes cool things for the web. If you're a graphic design or web development studio seeking to push the boundaries of website design, please drop me a line here!
+				p(class="vaporize") T +619 780 2839 / awmiklovic@gmail.com
+			//- A
+			img(class="name-letter" src="/images/slice1.svg" data-flip-key="A1")
+			//- Fix MFG
+			div(class="name-letter portfolio" data-flip-key="fix")
+				a(href="/fix.html")
+					h2 FIX MFG
+					img(src="/images/fix.png")
+				div(class="cover")
+			//- L
+			img(class="name-letter" src="/images/slice2.svg" data-flip-key="L1")
+			//- E
+			img(class="name-letter" src="/images/slice11.svg" data-flip-key="E1")
+			//- PowerCrunch
+			div(class="name-letter portfolio" data-flip-key="powercrunch")
+				a(href="/powercrunch.html")
+					h2 Power Crunch
+					img(src="/images/powercrunch.png")
+				div(class="cover")
+			//- X
+			img(class="name-letter" src="/images/slice4.svg" data-flip-key="X1")
+			//- M
+			img(class="name-letter" src="/images/slice12.svg" data-flip-key="M1")
+			//- Forth and Back
+			div(class="name-letter portfolio" data-flip-key="forthandback")
+				a(href="/fnb.html")
+					h2 Forth + Back
+					img(src="/images/fnb.png")
+				div(class="cover")
+			//- I
+			img(class="name-letter" src="/images/slice5.svg" data-flip-key="I1")
+			//- Protohomes
+			div(class="name-letter portfolio" data-flip-key="protohomes")
+				a(href="/protohomes.html")
+					h2 Protohomes
+					img(src="/images/protohomes.png")
+				div(class="cover")
+			//- K
+			img(class="name-letter" src="/images/slice7.svg" data-flip-key="K1")
+			//- Laguna Art Museum
+			div(class="name-letter portfolio" data-flip-key="laguna")
+				a(href="/laf.html")
+					h2 Laguna Art Museum
+					img(src="/images/laf.png")
+				div(class="cover")
+			//- L
+			img(class="name-letter" src="/images/slice3.svg" data-flip-key="L2")
+			//- O
+			img(class="name-letter" src="/images/slice8.svg" data-flip-key="01")
+			//- Sambazon
+			div(class="name-letter portfolio" data-flip-key="sambazon")
+				a(href="/sambazon.html")
+					h2 Sambazon
+					img(src="/images/sambazon.png")
+				div(class="cover")
+			//- V
+			img(class="name-letter" src="/images/slice9.svg" data-flip-key="V1")
+			//- I
+			img(class="name-letter" src="/images/slice6.svg" data-flip-key="I2")
+			//- C
+			img(class="name-letter" src="/images/slice10.svg" data-flip-key="C1")
+			//- Contivio
+			div(class="name-letter portfolio" data-flip-key="contivio")
+				a(href="/contivio.html")
+					h2 Contivio
+					img(src="/images/contivio.png")
+				div(class="cover")
+		#barba-wrapper
+			div(class='barba-container')
+				block content
+		#footer
+			p &copy; Alex Miklovic. All rights reserved.
