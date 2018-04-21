@@ -1,5 +1,9 @@
 let globalTimeout;
 
+window.onload = function(){
+	$('body').addClass('loaded');
+}
+
 $(document).ready(function(){
 
 	const pages = ["laf", "powercrunch", "fix", "fnb", "contivio", "sambazon", "protohomes"];

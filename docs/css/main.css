@@ -7,10 +7,14 @@
   src: url("/fonts/SportingGrotesque-Regular.otf"); }
 
 body {
+  opacity: 0;
+  transition: opacity 600ms;
   margin: 0px;
   font-family: "Sporting";
   line-height: 1.5;
   text-align: justify; }
+  body.loaded {
+    opacity: 1; }
   body h1, body h2, body h3, body h4 {
     font-family: "Sporting Bold"; }
   body .container {

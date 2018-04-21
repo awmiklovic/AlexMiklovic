@@ -1,6 +1,10 @@
-"use strict";
+'use strict';
 
 var globalTimeout = void 0;
+
+window.onload = function () {
+	$('body').addClass('loaded');
+};
 
 $(document).ready(function () {
 

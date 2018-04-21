@@ -4,14 +4,18 @@ const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const sass = require('gulp-sass');
 const image = require('gulp-image');
+const imagemin = require('gulp-imagemin');
  
 
 gulp.task('clean', function(){
-  return gulp.src('docs/*')
+  return gulp.src(['docs/*', '!CNAME'])
   .pipe(clean());
 });
 
 gulp.task('scripts', ['clean'], () => {
+
+  gulp.src('src/CNAME')
+    .pipe(gulp.dest('docs'));
 
   gulp.src('src/css/*.scss')
     .pipe(sass().on('error', sass.logError))
@@ -31,12 +35,18 @@ gulp.task('scripts', ['clean'], () => {
     .pipe(gulp.dest('docs'));
 
   gulp.src('src/images/**/*.{svg,png,jpg,gif,mp4}')
+    .pipe(imagemin())
     .pipe(gulp.dest('docs/images'));
 
   gulp.src('src/fonts/*.otf')
     .pipe(gulp.dest('docs/fonts'));
 
   return gulp.src('src/images/*.{svg,png,jpg,gif,mp4}')
+    .pipe(imagemin({
+      interlaced: true,
+      progressive: true,
+      optimizationLevel: 5
+    }))
     .pipe(gulp.dest('docs/images'));
 
 });
