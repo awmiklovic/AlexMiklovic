@@ -5,7 +5,6 @@ const clean = require('gulp-clean');
 const sass = require('gulp-sass');
 const image = require('gulp-image');
 const imagemin = require('gulp-imagemin');
- 
 
 gulp.task('clean', function(){
   return gulp.src(['docs/*', '!CNAME'])
