@@ -6,6 +6,10 @@ window.onload = function(){
 
 $(document).ready(function(){
 
+	$('#header-img').load(function(){
+		$('body').addClass('loaded');
+	});
+
 	const pages = ["laf", "powercrunch", "fix", "fnb", "contivio", "sambazon", "protohomes"];
 
 	Barba.Pjax.start();
