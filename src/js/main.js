@@ -6,7 +6,7 @@ window.onload = function(){
 
 $(document).ready(function(){
 
-	$('#header-img').load(function(){
+	$('#header-img').on('load', function(){
 		$('body').addClass('loaded');
 	});
 
