@@ -9,7 +9,7 @@ mixin mobileWireframe(project, name, vid)
 			div(class="play-btn")
 				img(src="/images/play.png")
 		img(src="/images/mobile-frame-filled.svg")
-		div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.png')")
+		div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.jpg')")
 			if vid
 				+overlay
 				video(loop muted class="vid" preload="metadata")
@@ -21,17 +21,17 @@ mixin desktopWireframe(project, name, vid)
 				div(class="play-btn")
 					img(src="/images/play.png")
 			img(src="/images/desktop-frame-filled.svg")
-			div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.png')")
+			div(class="inner" style="background-image:url('/images/"+project+"/"+name+"-screenshot.jpg')")
 				if vid
 					+overlay
 					video(loop muted class="vid" preload="metadata")
 						source(data-src="images/"+project+"/"+name+".mp4")
 
 mixin cropped(project, name)
-	div(class="cropped-img shadow" style="background-image:url('/images/"+project+"/"+name+".png')")
+	div(class="cropped-img shadow" style="background-image:url('/images/"+project+"/"+name+".jpg')")
 
 mixin fullImg(project, name)
-	img(class="shadow" src="/images/"+project+"/"+name+".png")
+	img(class="shadow" src="/images/"+project+"/"+name+".jpg")
 
 mixin overlay
 	div(class="vid-overlay")

@@ -136,7 +136,9 @@ img.name-letter {
     .name-letter {
       width: 25%; } }
   .name-letter img {
-    width: 100%; }
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; }
   .name-letter .cover {
     width: 0%;
     background: white;
@@ -173,7 +175,7 @@ img.name-letter {
           font-size: 2.8vw; } }
       @media all and (min-width: 900px) {
         .name-letter a h2 {
-          font-size: 1.3vw; } }
+          font-size: 1.2vw; } }
     .name-letter a img {
       z-index: 100;
       position: relative;

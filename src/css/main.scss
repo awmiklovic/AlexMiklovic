@@ -162,6 +162,8 @@ img.name-letter{
     position: relative;
 	img{
 	    width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
 	}
 	.cover {
 	    width: 0%;
@@ -203,7 +205,7 @@ img.name-letter{
                 font-size: 2.8vw;
             }
             @media all and (min-width: 900px){
-                font-size: 1.3vw;
+                font-size: 1.2vw;
             }
         }
         img{

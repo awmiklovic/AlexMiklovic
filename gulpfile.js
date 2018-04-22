@@ -34,7 +34,7 @@ gulp.task('scripts', ['clean'], () => {
     .pipe(gulp.dest('docs'));
 
   gulp.src('src/images/**/*.{svg,png,jpg,gif,mp4}')
-    .pipe(imagemin())
+    //.pipe(imagemin())
     .pipe(gulp.dest('docs/images'));
 
   gulp.src('src/fonts/*.otf')
