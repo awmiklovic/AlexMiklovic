@@ -5,6 +5,7 @@ const clean = require('gulp-clean');
 const sass = require('gulp-sass');
 const image = require('gulp-image');
 const imagemin = require('gulp-imagemin');
+const minify = require('gulp-minifier');
 
 gulp.task('clean', function(){
   return gulp.src(['docs/*', '!CNAME'])
@@ -18,11 +19,22 @@ gulp.task('scripts', ['clean'], () => {
 
   gulp.src('src/css/*.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(minify({
+      minify: true,
+      minifyCSS: true
+    }))
     .pipe(gulp.dest('docs/css'));
+
 
   gulp.src('src/js/*.js')
     .pipe(babel({
           presets: ['env']
+    }))
+    .pipe(minify({
+      minify: true,
+      minifyJS: {
+        sourceMap: true
+      }
     }))
     .pipe(gulp.dest('docs/js'));
 
