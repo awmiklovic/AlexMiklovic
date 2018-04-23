@@ -413,7 +413,6 @@ div#barba-wrapper {
         }
         .play-btn{
             opacity:0;
-            filter: none;
         }
     }
 }
@@ -448,8 +447,9 @@ div#barba-wrapper {
     margin-right: auto;
     top: calc(50% - 50px);
     z-index:102;
-    filter: drop-shadow(0px 0px 25px #333);
-    //box-shadow: 0px 0px 25px black;
+    img{
+        filter: drop-shadow(0px 0px 25px #333);
+    }
     cursor: pointer;
     transition: 600ms;
     transition-property: opacity;
