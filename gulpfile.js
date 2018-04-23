@@ -53,11 +53,6 @@ gulp.task('scripts', ['clean'], () => {
     .pipe(gulp.dest('docs/fonts'));
 
   return gulp.src('src/images/*.{svg,png,jpg,gif,mp4}')
-    .pipe(imagemin({
-      interlaced: true,
-      progressive: true,
-      optimizationLevel: 5
-    }))
     .pipe(gulp.dest('docs/images'));
 
 });

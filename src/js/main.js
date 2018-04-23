@@ -193,7 +193,7 @@ $(document).ready(function(){
 
 	//Bind Portfolio Images
 
-	$('.portfolio a').click(function(){
+	$('.portfolio a:not(.no-trigger)').click(function(){
 		$(this).addClass('hidden');
 		$('#bio .vaporize').addClass('hide');
 		$('.portfolio').each(function(i){
