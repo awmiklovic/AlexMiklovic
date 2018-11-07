@@ -15,6 +15,7 @@ body{
     }
     opacity: 0;
     transition: opacity 600ms;
+    background: #ffffff;
     &.loaded{
         opacity: 1;
     }
@@ -26,23 +27,36 @@ body{
     line-height: 1.5;
     text-align: justify;
     .container {
-        padding: 2% 5%;
+        padding: 15px 15px;
+        @media all and (min-width: 768px){
+          padding: 35px 50px;
+        }
+        box-sizing: border-box;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+        &:last-child{
+          padding-bottom: 0px;
+        }
     }
     h1{
         text-transform:uppercase;
         text-decoration:underline;
         font-weight:300;
-        font-size: 8vw;
+        font-size: 20px;
         text-align:left;
+        margin-bottom: 25px;
         @media all and (min-width: 600px){
-            font-size: 2.5vw;
+            font-size: 26px;
+            margin-bottom: 35px;
         }
     }
     p {
         margin-top: 0;
-        font-size: 4vw;
+        font-size: 16px;
         @media all and (min-width: 600px){
-            font-size: 2vw;
+            font-size: 20px;
+            line-height: 2;
         }
     }
     img{
@@ -50,7 +64,16 @@ body{
     }
     .one-third{
         width: 100%;
-        margin-bottom: 25px;
+        margin-bottom: 15px;
+        &:last-child{
+          margin-bottom: 0px;
+          @media all and (min-width: 768px){
+            margin-bottom: 25px;
+          }
+        }
+        @media all and (min-width: 768px){
+          margin-bottom: 25px;
+        }
         @media all and (min-width: 900px){
             width:33.33%;
             padding-left:2%;
@@ -71,6 +94,14 @@ body{
         width: 100%;
         padding: 0px;
         margin-bottom: 25px;
+        &:last-child{
+          margin-bottom: 0px;
+          margin-top: 15px;
+          @media all and (min-width: 768px){
+            margin-bottom: 25px;
+            margin-top: 0px;
+          }
+        }
         @media all and (min-width: 900px){
             width:66.66%;
             padding-right:2%;
@@ -88,10 +119,20 @@ body{
     }
     nav{
         display:block;
-        padding: 2% 5%;
+        box-sizing: border-box;
         position:relative;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 15px 15px;
+        @media all and (min-width: 768px){
+          padding: 25px 50px;
+        }
         #nav-name{
-            width:25%;
+            width: 80px;
+            @media all and (min-width: 768px){
+              width: 150px;
+            }
             cursor: pointer;
             img.name-letter{
                 width: 25%;
@@ -100,12 +141,13 @@ body{
         }
         div#buttons {
             position: absolute;
-            right: 5%;
-            top: 33%;
-            font-size: 3vw;
+            right: 15px;
+            top: calc(50% - 7px);
+            font-size: 12px;
             @media all and (min-width: 600px){
-                font-size: 2vw;
+                font-size: 20px;
                 top: 40%;
+                right: 50px;
             }
             text-decoration: underline;
             a{
@@ -115,18 +157,27 @@ body{
                 &:first-child{
                     margin-right: 7vw;
                     @media all and (min-width: 600px){
-                        margin-right: 3vw;
+                        margin-right: 100px;
                     }
                 }
             }
         }
     }
     #footer{
-        padding: 5vw 5%;
+        padding: 25px 15px;
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+        @media all and (min-width: 768px){
+          padding: 35px 50px;
+        }
+        //margin: 0px;
         p{
-            font-size: 2vw;
+            font-size: 12px;
+            margin: 0px;
             @media all and (min-width: 900px){
-                font-size: 1vw;
+                font-size: 14px;
             }
         }
     }
@@ -171,7 +222,7 @@ img.name-letter{
 	}
 	.cover {
 	    width: 0%;
-	    background: white;
+	    background: #ffffff;
 	    height: 100%;
 	    position: absolute;
 	    right: 0;
@@ -209,7 +260,10 @@ img.name-letter{
                 font-size: 2.8vw;
             }
             @media all and (min-width: 900px){
-                font-size: 1.2vw;
+                font-size: 1vw;
+            }
+            @media all and (min-width: 1400px){
+                font-size: 14px;
             }
         }
         img{
@@ -236,6 +290,9 @@ img.name-letter{
 
 #name{
 	display:none;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 div#bio {
@@ -259,10 +316,16 @@ div#bio {
         @media all and (min-width:900px){
             font-size: 1.4vw;
             margin:0px;
-            margin-bottom:2vw;
+            margin-bottom:20px;
         }
         @media all and (min-width: 1100px){
             text-align: justify;
+            font-size: 1.5vw;
+        }
+        @media all and (min-width: 1400px){
+            text-align: justify;
+            font-size: 20px;
+            line-height: 1.5;
         }
         &:last-child{
             margin-bottom:25px;
@@ -282,8 +345,30 @@ div#bio {
 }
 
 div#barba-wrapper {
+    #header-img-wrap{
+      padding: 0px 0px;
+      @media all and (min-width: 768px){
+        padding: 0px 50px;
+      }
+    }
     #header-img{
         width:100%;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+        padding: 0px 0px;
+        height: 200px;
+        @media all and (min-width: 498px){
+          height: 500px;
+        }
+        background-size: cover;
+        background-position: center center;
+        background-color: #fafafa;
+        @media all and (min-width: 768px){
+          padding: 0px 50px;
+        }
+        box-sizing: border-box;
     }
     .barba-container{
         transition-property: opacity;
@@ -400,9 +485,9 @@ div#barba-wrapper {
         position:absolute;
         right:.3%;
         top:.6%;
-        max-width:50px; 
+        max-width:50px;
         transition: 600ms;
-        cursor: pointer; 
+        cursor: pointer;
     }
     &:hover img.link{
         opacity: 1;
@@ -460,4 +545,30 @@ div#barba-wrapper {
     }
 }
 
+#preloader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    display: none;
+}
 
+#preload-inner img.name-letter {
+    width: 60px;
+    margin-bottom: 0px;
+    display: inline-block;
+    cursor: pointer;
+    &.hidden{
+      display: none;
+    }
+}
+
+canvas#scene {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+}
