@@ -184,7 +184,7 @@ body{
 }
 
 img.name-letter{
-    width: 100%;
+    width: 33%;
     margin-bottom: 25px;
     @media all and (min-width: 600px){
         width: 50%;
@@ -201,7 +201,7 @@ img.name-letter{
 
 
 .name-letter {
-    width: 100%;
+    width: 33%;
     margin-bottom: 25px;
     @media all and (min-width: 600px){
         width: 50%;
@@ -243,6 +243,10 @@ img.name-letter{
             cursor: pointer;
         }
         h2{
+            display: none;
+            @media all and (min-width: 768px){
+              display: block;
+            }
             position: absolute;
             left: 0;
             right: 0;
@@ -310,7 +314,7 @@ div#bio {
     //padding-top:1%;
     margin: 0px;
     p{
-        font-size: 4vw;
+        font-size: 16px;
         text-align: left;
         margin-bottom: 25px;
         @media all and (min-width:900px){
@@ -550,12 +554,20 @@ div#barba-wrapper {
     justify-content: center;
     align-items: center;
     height: 100%;
-    width: 100%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    @media all and (min-width: 768px){
+      width: 100%;
+    }
     display: none;
 }
 
 #preload-inner img.name-letter {
-    width: 60px;
+    width: 50px;
+    @media all and (min-width:768px){
+      width: 60px;
+    }
     margin-bottom: 0px;
     display: inline-block;
     cursor: pointer;
