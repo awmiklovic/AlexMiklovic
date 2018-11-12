@@ -1,0 +1,37 @@
+//- contivio.pug
+
+extends layout.pug
+
+block content
+	div(id="header-img-wrap")
+		div(id="header-img" style="background-image:url('/images/trensor/TrensorHeader.jpg')")
+	div(class="container")
+		h1
+			a(href="https://www.trensor.com/" target="_blank") Trensor
+		div(class="two-thirds")
+			p.
+				Trensor specializes in manufacturing pressure and pressure/temperature combination sensors for a wide variety of industries including automotive, HVAC/R, industrial, off-road vehicles, over-the-road truck and bus, marine, rail and more.
+
+			p.
+				For this project, I provided all design and development services, which included multilingual support for their multinational clientelle and custom icon design to represent their sensor offering.
+
+		div(class="one-third")
+			+mobileWireframe('trensor', 'TrensorMobile', false)
+
+	div(class="container")
+			+desktopWireframe('trensor', 'TrensorHome', true)
+
+	div(class="container")
+		+fullImg("trensor", "TrensorWelcome")
+
+	div(class="container")
+		+desktopWireframe('trensor', 'TrensorMarine', true)
+		
+	div(class="container")
+		+fullImg("trensor", "TrensorNews")
+	
+	div(class="container")
+		+desktopWireframe('trensor', 'TrensorBlog')
+
+
+		

@@ -318,13 +318,13 @@ div#bio {
         text-align: left;
         margin-bottom: 25px;
         @media all and (min-width:900px){
-            font-size: 1.4vw;
+            font-size: 1.3vw;
             margin:0px;
             margin-bottom:20px;
         }
         @media all and (min-width: 1100px){
             text-align: justify;
-            font-size: 1.5vw;
+            font-size: 1.3vw;
         }
         @media all and (min-width: 1400px){
             text-align: justify;
@@ -367,7 +367,7 @@ div#barba-wrapper {
           height: 500px;
         }
         background-size: cover;
-        background-position: center center;
+        background-position: center top;
         background-color: #fafafa;
         @media all and (min-width: 768px){
           padding: 0px 50px;

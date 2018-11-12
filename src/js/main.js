@@ -10,7 +10,7 @@ $(document).ready(function(){
 		$('body').addClass('loaded');
 	});
 
-	const pages = ["laf", "powercrunch", "fix", "fnb", "contivio", "sambazon", "protohomes"];
+	const pages = ["laf", "buckingham", "powercrunch", "fix", "fnb", "contivio", "sambazon", "protohomes", "trensor"];
 
 	Barba.Pjax.start();
 
