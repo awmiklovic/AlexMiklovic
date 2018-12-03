@@ -175,6 +175,7 @@ $(document).ready(function(){
 		flipping.read();
 		$('.portfolio').css('display', 'inline-block');
 		$('#bio').css('display', 'inline-block');
+		$('.smiley').css('display', 'inline-block');
 		flipping.flip();
 	}
 
@@ -182,6 +183,7 @@ $(document).ready(function(){
 		flipping.read();
 		$('nav').css('display', 'block');
 		$('#name').css('display', 'none');
+		$('.smiley').css('display','none').css('opacity','0');
 		flipping.flip();
 	}
 
@@ -189,20 +191,28 @@ $(document).ready(function(){
 		flipping.read();
 		$('#name').css('display', 'block');
 		$('nav').css('display', 'none');
+		$('.smiley').css('display','none');
 		flipping.flip();
 	}
 
 	const hidePreloader = () => {
 		flipping.read();
-		$('#name').css('display', 'block');
-		$('#preloader').css('display', 'none');
+		let p1 = new TimelineMax();
+		p1.to('#name path', 0, { fill:'#ffffff' })
+			.to('.portfolio', 0, { opacity: '0' })
+			.to('body', 0, { backgroundColor: '#000000' })
+			.to('#preloader', 0, {display: 'none'})
+			.to('#name', 0, { display:'block' });
+
 		flipping.flip();
-		setTimeout(function(){
-			$('#bio .vaporize').removeClass('hide');
-		}, 300);
-		setTimeout(function(){
-			$('.portfolio').removeClass('hidden');
-		}, 600);
+
+		p1.delay(.8)
+			.to('#name path', 1.2, { fill: '#000000' })
+			.to('body', 1.2, { backgroundColor: '#ffffff' }, '-=.1.2s')
+			.to('.portfolio', 0, { opacity: '1' })
+			.to('#bio .vaporize', .5, {className:"-=hide"}, '-=.2s' )
+			.to('.portfolio', 0, {className:"-=hidden"} )
+			.to('.smiley',1,{opacity:'1',ease: Power4.easeIn});
 	}
 
 	//Bind Portfolio Images
@@ -243,6 +253,7 @@ $(document).ready(function(){
 		}, 1600);
 		setTimeout(function(){
 			$('.portfolio').removeClass('hidden');
+			var p = new TimelineMax().to('.smiley',1,{opacity:'1',ease:Power4.easeIn});
 		}, 2000);
 		Barba.Pjax.goTo('/');
 	});
@@ -255,6 +266,7 @@ $(document).ready(function(){
 		let newArray = '<span>';
 		newArray += wordArray.join(' </span><span>');
 		newArray += "</span>";
+		newArray += '<div style="margin-top:15px;"><span>T +619 780 2839</span> <span>/</span> <span><a href="mailto:awmiklovic@gmail.com">awmiklovic@gmail.com</a></span></div>';
 		$(this).html(newArray);
 
 		const animateArray = Array.from($('.vaporize span'));
@@ -274,7 +286,7 @@ $(document).ready(function(){
 		let delay = 0;
 		let interval = 150;
 		const numChars = 12;
-		$('#preload-inner img').each(function(){
+		$('#preload-inner .name-letter').each(function(){
 			delay += interval;
 			const el = $(this);
 			setTimeout(function(){
@@ -283,7 +295,7 @@ $(document).ready(function(){
 		});
 		setTimeout(function(){
 			//hidePreloader();
-			$('#preload-inner img').mouseover(function(){
+			$('#preload-inner .name-letter').mouseover(function(){
 				hidePreloader();
 			});
 		}, interval * (numChars+1));
@@ -293,6 +305,8 @@ $(document).ready(function(){
 	$(document).on('mouseenter', '.play-btn', function(){
 		const video = $(this).parent().find('video');
 		const inner = $(this).parent().find('.inner');
+		$(this).css('opacity', '0');
+		$(this).parent().find('.loading').css('opacity', '1');
 		const wireframe = $(this).parent();
 		if(video.length > 0){
 			const overlay = $(this).parent().find('.vid-overlay');
@@ -326,6 +340,8 @@ $(document).ready(function(){
 		const inner = $(this).children('.inner');
 		const video = inner.children('video');
 		const overlay = inner.children('.vid-overlay');
+		$(this).find('.play-btn').css('opacity', '1');
+		$(this).find('.loading').css('opacity', '0');
 		const wireframe = $(this);
 		if(video.length > 0){
 			wireframe.removeClass('show');
@@ -335,150 +351,14 @@ $(document).ready(function(){
 			}, 600);
 		}
 	});
+});
 
-//Preloader Stuff
-/*
-	var renderer, scene, camera, light, circles;
-
-	var ww      = window.innerWidth,
-	wh          = window.innerHeight,
-	speed       = .2,
-	mouseX       = 0,
-	colors      = [
-	                0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,
-									0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF,
-									0xFFFFFF,0xFFFFFF,0xFFFFFF,0xFFFFFF
-	            ],
-	closest     = {position:{z:0}},
-	farest      = {position:{z:0}},
-	radius      = 2,
-	segments    = 4;
-	function init(){
-
-	    renderer = new THREE.WebGLRenderer({canvas : document.getElementById('scene')});
-	    renderer.setSize(ww,wh);
-
-	    scene = new THREE.Scene();
-	    scene.fog = new THREE.Fog( 0xFFFFFF, 300, 700 );
-	    scene.background = new THREE.Color(0xFAFAFA);
-
-	    camera = new THREE.PerspectiveCamera(50,ww/wh, 0.1, 10000 );
-	    camera.position.set(0,0,0);
-	    scene.add(camera);
-
-	    window.addEventListener("mousemove", mousemove);
-	    window.addEventListener("resize", resize);
-
-	    createCircles();
-
-			//$('#preload-inner img').click(function(){
-				//scene.background = new THREE.Color(0xFFFFFF);
-			//});
-
-	}
-
-	var resize = function(){
-	    ww = window.innerWidth;
-	    wh = window.innerHeight;
-	    camera.aspect = ww / wh;
-	    camera.updateProjectionMatrix();
-
-	    renderer.setSize( ww, wh );
-	};
-	var mousemove = function(e){
-	    //speed = (wh/2-e.clientY)/(wh/2)*1;
-	    mouseX = (ww/2-e.clientX)/(ww/5)*5;
-	};
-
-	var createCircles = function(){
-
-	    circles = new THREE.Object3D();
-	    scene.add(circles);
-
-	    for(var i=0;i<20;i++){
-	        addCircle();
-	    }
-	    render();
-
-	};
-
-	var removeLine = function(isFarest){
-	    if(isFarest){
-	       for(var i=0,j=circles.children.length;i<j;i++){
-	            if(circles.children[i] === farest){
-	                circles.remove(circles.children[i]);
-	            }
-	        }
-	    }
-	    else{
-	        for(var i=0,j=circles.children.length;i<j;i++){
-	            if(circles.children[i] === closest){
-	                circles.remove(circles.children[i]);
-	            }
-	        }
-	    }
-	};
-
-
-	var addCircle = function(top){
-	    var row = new THREE.Object3D();
-	    if(top){
-	        row.degreesRotation = (closest.degreesRotation-1) || 0;
-	    }
-	    else{
-	        row.degreesRotation = (farest.degreesRotation+1) || 0;
-	    }
-	    for(var j=0;j<12;j++){
-	        var material = new THREE.MeshBasicMaterial({
-	            color: colors[j]
-	        });
-	        var circleGeometry = new THREE.CircleGeometry( radius, segments );
-	        var circle = new THREE.Mesh( circleGeometry, material );
-	        var translate = new THREE.Matrix4().makeTranslation(30,0,0);
-	        var rotation =  new THREE.Matrix4().makeRotationZ(Math.PI*2/12*j+row.degreesRotation*.3);
-	        circle.applyMatrix( new THREE.Matrix4().multiplyMatrices(rotation, translate) );
-	        row.add(circle);
-	    }
-	    if(top){
-	        row.position.z = (closest.position.z/35+1)*35;
-	    }
-	    else{
-	        row.position.z = (farest.position.z/35-1)*35;
-	    }
-	    circles.add(row);
-	    closest = circles.children[0];
-	    farest = circles.children[0];
-	    for(var i=0,j=circles.children.length;i<j;i++){
-	        if(circles.children[i].position.z>closest.position.z){
-	            closest = circles.children[i];
-	        }
-	        if(circles.children[i].position.z<farest.position.z){
-	            farest = circles.children[i];
-	        }
-	    }
-	};
-
-
-	var render = function () {
-	    requestAnimationFrame(render);
-
-	    camera.position.z -= speed;
-	    camera.position.x += (mouseX-camera.position.x)*.008;
-	    // If closest element is behind camera
-	    if(camera.position.z<(closest.position.z-35) && speed>0){
-	        removeLine(false);
-	        addCircle();
-	    }
-	    else if(camera.position.z>(farest.position.z+665) && speed<0){
-	        removeLine(true);
-	        addCircle(true);
-	    }
-
-	    renderer.render(scene, camera);
-
-	};
-
-	init();
-	*/
+$(document).on('click', '.smiley', function(){
+	$("html, body").animate({ scrollTop: "0px" });
+	$('body').append('<div id="smiley-overlay"></div>');
+	$('#smiley-overlay').load('https://codepen.io/awmiklovic/pen/aQPpXd.html');
+	setTimeout(function(){
+		$('#smiley-overlay').addClass('visible');
+	}, 50);
 
 });
