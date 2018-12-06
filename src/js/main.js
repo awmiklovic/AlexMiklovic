@@ -1,19 +1,24 @@
+//For the clearing the Wireframe timeout.
 let globalTimeout;
 
-window.onload = function(){
+//Generally, fade in after assets load.
+$(window).on('load', function(){
 	$('body').addClass('loaded');
-}
+});
 
 $(document).ready(function(){
-
+	//Fade the body in after the header loads. For portfolio pages.
 	$('#header-img').on('load', function(){
 		$('body').addClass('loaded');
 	});
 
+	//For the Next / Prev buttons in the portfolio. They are rotated through this array order.
 	const pages = ["laf", "buckingham", "powercrunch", "fix", "fnb", "contivio", "sambazon", "protohomes", "trensor"];
 
+	//Start Barba
 	Barba.Pjax.start();
 
+	//On "Next" click, figure out which page comes next from the pages array above and go to it.
 	$(document).on('click', '#next', function(){
 		let currentURL = window.location.pathname;
 		let nextPage = '/';
@@ -29,6 +34,7 @@ $(document).ready(function(){
 		Barba.Pjax.goTo("/"+nextPage+".html");
 	});
 
+	//On "Prev" click, figure out which page comes prev from the pages array above and go to it.
 	$(document).on('click', '#prev', function(){
 		let currentURL = window.location.pathname;
 		let nextPage = '/';
@@ -44,6 +50,7 @@ $(document).ready(function(){
 		Barba.Pjax.goTo("/"+nextPage+".html");
 	});
 
+	//Define the Barba transitions.
 	var ShortFadeTransition = Barba.BaseTransition.extend({
 
 		start: function() {
@@ -59,11 +66,6 @@ $(document).ready(function(){
 		},
 
 		fadeIn: function() {
-			/**
-			 * this.newContainer is the HTMLElement of the new Container
-			 * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-			 * Please note, newContainer is available just after newContainerLoading is resolved!
-			 */
 
 			var _this = this;
 			var $el = $(this.newContainer);
@@ -85,33 +87,19 @@ $(document).ready(function(){
 
 	var FadeTransition = Barba.BaseTransition.extend({
 	  start: function() {
-	    /**
-	     * This function is automatically called as soon the Transition starts
-	     * this.newContainerLoading is a Promise for the loading of the new container
-	     * (Barba.js also comes with an handy Promise polyfill!)
-	     */
 
-	    // As soon the loading is finished and the old page is faded out, let's fade the new page
 	    Promise
 	      .all([this.newContainerLoading, this.fadeOut()])
 	      .then(this.fadeIn.bind(this));
 	  },
 
 	  fadeOut: function() {
-	    /**
-	     * this.oldContainer is the HTMLElement of the old Container
-	     */
 
 	     return $(this.oldContainer).css('opacity', '0').delay(800).promise();
 
 	  },
 
 	  fadeIn: function() {
-		/**
-		 * this.newContainer is the HTMLElement of the new Container
-		 * At this stage newContainer is on the DOM (inside our #barba-container and with visibility: hidden)
-		 * Please note, newContainer is available just after newContainerLoading is resolved!
-		 */
 
 		var _this = this;
 		var $el = $(this.newContainer);
@@ -128,15 +116,9 @@ $(document).ready(function(){
 	  }
 	});
 
-	/**
-	 * Next step, you have to tell Barba to use the new Transition
-	 */
-
+	//Conditional logic for which transition to use. Depends on where the user is going/coming from.
 	Barba.Pjax.getTransition = function() {
-	  /**
-	   * Here you can use your own logic!
-	   * For example you can use different Transition based on the current page or link...
-	   */
+
 		var currentURL = Barba.HistoryManager.prevStatus().url;
 		currentURL = currentURL.split('/');
 		currentURL = currentURL[currentURL.length - 1];
@@ -147,19 +129,19 @@ $(document).ready(function(){
 
 		console.log(currentURL + " " + targetURL);
 
+		//Always scroll back to top on new page load.
 		$("html, body").animate({ scrollTop: "0px" });
-
-         if(currentURL == '' || targetURL == ''){
-         	console.log('long');
-         	return FadeTransition;
-         } else{
-         	console.log('short');
-         	return ShortFadeTransition;
-         }
+	       if(currentURL == '' || targetURL == ''){
+	       	console.log('long');
+	       	return FadeTransition;
+	       } else{
+	       	console.log('short');
+	       	return ShortFadeTransition;
+	       }
 	};
 
-	//Flipping Animations
-
+	//Animation funcitons.
+	//Configure Flipping.
 	const flipping = new Flipping({
 	  duration:600
 	});
@@ -228,9 +210,6 @@ $(document).ready(function(){
 				$(el).addClass('hidden');
 			}, delay);
 		});
-		//setTimeout(function(){
-			//hideBlocks();
-		//}, 1300);
 		setTimeout(function(){
 			showNav();
 		}, 1000);
@@ -277,29 +256,26 @@ $(document).ready(function(){
 		  $(element).css('transition', transition + 'ms');
 		  $(element).css('transition-delay', rand + 'ms');
 		  $(element).css('transition-property', 'opacity');
-			//$(element).css('transition-timing-function', 'ease-in');
 		});
 
 	});
 
-//Preloader Loading
-		let delay = 0;
-		let interval = 150;
-		const numChars = 12;
-		$('#preload-inner .name-letter').each(function(){
-			delay += interval;
-			const el = $(this);
-			setTimeout(function(){
-				$(el).removeClass('hidden');
-			}, delay);
-		});
+	//Preloader Loading
+	let delay = 1000;
+	let interval = 150;
+	const numChars = 12;
+	$('#preload-inner .name-letter').each(function(){
+		delay += interval;
+		const el = $(this);
 		setTimeout(function(){
-			//hidePreloader();
-			$('#preload-inner .name-letter').mouseover(function(){
-				hidePreloader();
-			});
-		}, interval * (numChars+1));
-
+			$(el).removeClass('hidden');
+		}, delay);
+	});
+	setTimeout(function(){
+		$('#preload-inner .name-letter').mouseover(function(){
+			hidePreloader();
+		});
+	}, delay);
 
 	//Lazy Load Videos
 	$(document).on('mouseenter', '.play-btn', function(){
@@ -318,7 +294,7 @@ $(document).ready(function(){
 				video[0].load();
 				overlay.addClass('center');
 				video[0].addEventListener('loadeddata', function() {
-   					// Video is loaded and can be played
+	 					// Video is loaded and can be played
 					video[0].play();
 					globalTimeout = setTimeout(function(){
 						wireframe.addClass('show');
@@ -335,6 +311,7 @@ $(document).ready(function(){
 		}
 	});
 
+	//Stop Video when exiting wireframe module
 	$(document).on('mouseleave', '.mobile-wireframe, .desktop-wireframe', function(){
 		clearTimeout(globalTimeout);
 		const inner = $(this).children('.inner');
@@ -353,6 +330,7 @@ $(document).ready(function(){
 	});
 });
 
+// Load King Kong Easter Egg by dynamically loading the code hosted at Codepen.
 $(document).on('click', '.smiley', function(){
 	$("html, body").animate({ scrollTop: "0px" });
 	$('body').append('<div id="smiley-overlay"></div>');
